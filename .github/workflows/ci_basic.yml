@@ -9,6 +9,9 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
+    env:
+      CUSTOM_ENV_VAR: "Valeur perso"
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -18,3 +21,10 @@ jobs:
 
       - name: Display index.html content
         run: cat ./app/index.html
+
+      - name: Afficher secrets et variables d'environnement
+        run: |
+          echo "🔐 FAKE_API_TOKEN = ${{ secrets.FAKE_API_TOKEN }}"
+          echo "🛠 ENV_TYPE = ${{ secrets.ENV_TYPE }}"
+          echo "🌍 RUNNER_OS = $RUNNER_OS"
+          echo "🧪 CUSTOM_ENV_VAR = $CUSTOM_ENV_VAR"
